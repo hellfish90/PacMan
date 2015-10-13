@@ -13,7 +13,7 @@ class Graph
 public:
     Graph(int V);  // Constructor
     void addEdge(int v, int w); // function to add an edge to graph
-    void BFS(int s);  // prints BFS traversal from a given source s
+    int BFS(int s);  // prints BFS traversal from a given source s
 };
  
 Graph::Graph(int V)
@@ -27,7 +27,7 @@ void Graph::addEdge(int v, int w)
     adj[v].push_back(w); // Add w to v’s list.
 }
  
-void Graph::BFS(int s)
+int Graph::BFS(int s)
 {
     // Mark all the vertices as not visited
     bool *visited = new bool[V];
@@ -44,11 +44,14 @@ void Graph::BFS(int s)
     // 'i' will be used to get all adjacent vertices of a vertex
     list<int>::iterator i;
  
+    int conexNode= 0;
+
     while(!queue.empty())
     {
         // Dequeue a vertex from queue and print it
         s = queue.front();
         cout << s << " ";
+        conexNode= conexNode+1;
         queue.pop_front();
  
         // Get all adjacent vertices of the dequeued vertex s
@@ -63,4 +66,6 @@ void Graph::BFS(int s)
             }
         }
     }
+    return conexNode;
 }
+ 
